@@ -2,6 +2,8 @@ import smtplib
 from email.message import EmailMessage
 from tkinter import *
 
+from Scripts.калькулятор_в_котором_пользователь_сам_вводит_числа_доработка_3 import result
+
 
 def send_email():
     sender_email = 'evapython@yandex.ru'#адрес отправителя
@@ -22,9 +24,9 @@ def send_email():
         server = smtplib.SMTP_SSL('smtp.yandex.ru', 465)#указываем путь и номер порта
         server.login(sender_email, password)#указываем логин и пароль
         server.send_message(msg)#отправляем письмо
-        print('Письмо отправлено!')#выводим сообщение об отправке
+        result_label.config(text='Письмо отправлено!')#выводим сообщение об отправке
     except Exception as e:#обрабатываем исключения
-        print(f'Ошибка: {e}')#выводим сообщение об ошибке
+        result_label.config(text=f'Ошибка: {e}')#выводим сообщение об ошибке
     finally:#то, что выполнится в любом случае
         if server:#если сервер работал
             server.quit()#то мы его закрываем
