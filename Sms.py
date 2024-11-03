@@ -3,7 +3,17 @@ from email.message import EmailMessage
 from tkinter import *
 
 
+def save():#создаем функцию для сохранения в файл
+    with open('save.txt', 'w') as file:#открываем файл на запись(w) с именем file.
+# если этого файла нет в нашей папке, то он будет создан.
+        file.write(sender_email_entry.get() + '\n')#записываем в файл адрес отправителя
+#чтобы было на следующей строке нужно прибавить символ переноса строки
+        file.write(recipient_email_entry.get() + '\n')#записываем в файл адрес получателя
+        file.write(password_entry.get() + '\n')#записываем в файл пароль для почты
+
+
 def send_email():
+    save()#перед тем как все отправлять, вызывае функцию сохранения
     sender_email = sender_email_entry.get()#адрес отправителя
     recipient_mail = recipient_email_entry.get()#адрес получателя
     password = password_entry.get()#пароль для почты
